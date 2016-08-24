@@ -1,8 +1,8 @@
 MatchvsHttp =  require("matchvs_server_sdk_http")
 
 _M = {}
-_M.appkey				=		"IDLDIldi3dsdsaf"
-_M.appSecret			=		"1111c06fc81d4d15b748233cedc61111"
+_M.appkey				=		""
+_M.appSecret			=		""
 
 --设置appkey和appSecret
 function _M:matchvsInit(appkey,appSecret)
@@ -54,6 +54,37 @@ end
 --获取用户商品信息
 function _M:getProductsInfo(gameID,userID)
 	return MatchvsHttp:http_getProductsInfo(gameID,userID,self.appkey,self.appSecret)
+end
+
+
+--09检查有无此场次[新增于1.4]
+function _M:checkField(gameID,versionGame,fieldID)
+	return MatchvsHttp:http_checkField(gameID,versionGame,fieldID,self.appkey,self.appSecret)
+end
+
+--10检测场次是否可以进入[新增于1.4]
+function _M:checkUserField(gameID,userID,fieldID)
+	return MatchvsHttp:http_checkUserField(gameID,userID,fieldID,self.appkey,self.appSecret)
+end
+
+--11锁住用户商品[新增于1.4]
+function _M:lockUserField(gameID,userID,fieldID)
+	return MatchvsHttp:http_lockUserField(gameID,userID,fieldID,self.appkey,self.appSecret)
+end
+
+--12解锁用户商品[新增于1.4]
+function _M:unLockUserField(gameID,userID,fieldID,lockID)
+	return MatchvsHttp:http_unLockUserField(gameID,userID,fieldID,lockID,self.appkey,self.appSecret)
+end
+
+--13进场消费[新增于1.4]
+function _M:spendUserField(gameID,userID,fieldID,lockID)
+	return MatchvsHttp:http_spendUserField(gameID,userID,fieldID,lockID,self.appkey,self.appSecret)
+end
+
+--14仲裁处理（只处理不仲裁）[新增于1.4]
+function _M:dealUserField(gameID,userID,fieldID,userCount,state)
+	return MatchvsHttp:http_dealUserField(gameID,userID,fieldID,userCount,state,self.appkey,self.appSecret)
 end
 
 return _M

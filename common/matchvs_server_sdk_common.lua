@@ -55,7 +55,7 @@ function _M:makeSignCommon(params, separator, headKey, tailKey)
 
     str = str..tailKey
     local value = md5:sumhexa(str)
-    return value, nil
+    return value, str
 end
 
 return _M
